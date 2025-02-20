@@ -1,0 +1,43 @@
+#include<iostream>
+using namespace std;
+#include<stack>
+int main(){
+    int te; cin>>te;
+    while( te--){
+       stack< int > st;
+       string s ; cin>>s;
+
+       bool chak = true;
+       for( int i = 0; i<s.size(); i++){
+           // if( !chak) break;
+        if(s[i]== '[' || s[i]== '{' || s[i]== '(')
+                                             st.push(s[i]);
+        
+        else
+        {
+              if( s[i] == ']'){
+                             if( !st.empty() && st.top() == '[')
+                                               st.pop();
+                            else 
+                              chak = false;
+              }
+              else if( s[i] == '}'){
+                            if( !st.empty() && st.top() == '{')
+                                            st.pop();
+                           else 
+                              chak = false;
+              }
+              else {
+                           if( !st.empty() && st.top() == '(')
+                                          st.pop();
+                           else 
+                              chak = false;
+              }
+             
+        }
+       }
+       if( chak && st.empty()) cout<<"YES\n";
+       else cout<<"NO\n";
+    }
+
+}
